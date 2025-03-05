@@ -27,12 +27,14 @@ Make sure you have the following installed:
 
 3. Create a `.env` file in the root directory and configure the following:
 
+   `
    PORT=3000
    MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/<database>?retryWrites=true&w=majority
    JWT_SECRET=your_jwt_secret
    EMAIL_USER=your_email@example.com
    EMAIL_PASS=your_email_password
    CLIENT_URL=http://localhost:5173
+   `
 
 4. Start the server:
    
