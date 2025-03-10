@@ -12,7 +12,7 @@ const register = async (req, res) => {
         .json({ message: 'name, email, password is required!' });
     const existingUser = await User.findOne({ email });
     if (existingUser)
-      return res.status(400).json({ message: 'try different email' });
+      return res.status(400).json({ message: 'email already exist' });
     if (password.length < 8)
       return res
         .status(400)
@@ -39,9 +39,7 @@ const login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: 'Invalid password' });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
-    });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
     res
       .status(200)
